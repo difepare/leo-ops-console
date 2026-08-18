@@ -58,3 +58,6 @@ pip install -r requirements.txt
 python src/generate_telemetry.py
 python src/telemetry_dashboard.py
 python src/ops_console.py
+## Dashboard
+
+![Mission dashboard](Satelite/telemetry_dashboard.png)
