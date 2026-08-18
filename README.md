@@ -1,12 +1,10 @@
-# leo-ops-console
-Mini mission operations lab for simulated LEO satellite telemetry
 # LEO Ops Console
 
-A small mission-operations lab that turns simulated satellite telemetry into alerts, priorities, and an actionable recommendation.
+Mini mission operations lab for simulated LEO satellite telemetry.
 
-This project simulates one hour of a LEO satellite mission and walks through a full operations pipeline:
+This project turns one hour of simulated satellite telemetry into alerts, priorities, and one actionable recommendation.
 
-**telemetry → thresholds → trends → composite alerts → severity → recommendation → ops console**
+**Pipeline:** telemetry → thresholds → trends → composite alerts → severity → recommendation → ops console
 
 ## What it does
 
@@ -20,18 +18,48 @@ This project simulates one hour of a LEO satellite mission and walks through a f
 ## Why it exists
 
 Remote systems fail in motion, not only at a red threshold.
-This lab trains the idea of operating a system you cannot touch: watch signals, detect syndromes, and decide what to do first.
+This lab is about operating a system you cannot touch: watch signals, detect syndromes, and decide what to do first.
 
-Sample mission result
+## Dashboard
+
+![Mission dashboard](Satelite/telemetry_dashboard.png)
+
+## Sample mission result
+
 In the current 60-minute simulation:
 
-Dominant risk: link degradation
-Max severity: 3/5
-Active recommendation: reduce data rate and prioritize essential telemetry
+- Dominant risk: **link degradation**
+- Max severity: **3/5**
+- Active recommendation: **reduce data rate and prioritize essential telemetry**
+
+## How to run
+
+```bash
+pip install -r requirements.txt
+cd Satelite
+python telemetry_dashboard.py
+python trend_alerts.py
+python composite_alerts.py
+python priority_engine.py
+python recommendation_engine.py
+python mission_report.py
+
+leo-ops-console/
+├── README.md
+├── requirements.txt
+└── Satelite/
+    ├── telemetry_hour.csv
+    ├── telemetry_dashboard.py
+    ├── telemetry_dashboard.png
+    ├── trend_alerts.py
+    ├── composite_alerts.py
+    ├── priority_engine.py
+    ├── recommendation_engine.py
+    └── mission_report.py
 
 Pipeline
 
-Generate time-series telemetry
+Generate / load time-series telemetry
 Flag simple threshold alerts
 Detect 5-minute trends
 Build composite syndromes
@@ -50,14 +78,3 @@ Educational lab / portfolio project.
 Next step: root-cause hints and a lightweight web console.
 Author
 Diego F. Palomino
-
-## How to run
-
-```bash
-pip install -r requirements.txt
-python src/generate_telemetry.py
-python src/telemetry_dashboard.py
-python src/ops_console.py
-## Dashboard
-
-![Mission dashboard](Satelite/telemetry_dashboard.png)
